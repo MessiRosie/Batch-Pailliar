@@ -110,8 +110,7 @@ equivalents: they return identical results, only the runtime differs.
 
 On first import the package sends a single anonymous usage ping so a
 distribution can count active installs. It is non-blocking and failure-silent.
-Set `PAILLIER_USAGE_OFF=1` to disable it, or `PAILLIER_USAGE_URL` to override
-the endpoint.
+Set `PAILLIER_USAGE_URL` to override the endpoint.
 
 ## License
 
