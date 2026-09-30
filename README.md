@@ -5,7 +5,9 @@ Additive homomorphic encryption (Paillier) with a native GMP backend.
 Encrypt integers, then compute on the ciphertexts directly: add two ciphertexts,
 add a ciphertext and a plaintext, or multiply a ciphertext by a plaintext
 scalar — all without ever seeing the underlying values. Decryption is the only
-operation that requires the private key.
+operation that requires the private key. It is CRT-accelerated — split across
+the two prime factors for roughly 4× faster decryption and efficient batch
+workloads.
 
 ## Features
 
