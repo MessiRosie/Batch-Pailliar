@@ -1,0 +1,19 @@
+#!/usr/bin/expect -f
+# scp a file FROM the server (remote -> local) using password auth.
+# Usage: SSH_PASS='<password>' SERVER_IP='<host>' scp_get.exp <remote-path> <local-path>
+set timeout 120
+set pass $env(SSH_PASS)
+if {$pass eq ""} { puts "SSH_PASS environment variable not set"; exit 1 }
+set host $env(SERVER_IP)
+if {$host eq ""} { puts "SERVER_IP environment variable not set"; exit 1 }
+set remote [lindex $argv 0]
+set local [lindex $argv 1]
+spawn scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null root@$host:$remote $local
+set sent 0
+expect {
+    -re {[Pp]assword:} {
+        if {!$sent} { send -- "$pass\r"; set sent 1 }
+        exp_continue
+    }
+    eof
+}

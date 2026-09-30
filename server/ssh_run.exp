@@ -14,9 +14,11 @@ if {$host eq ""} {
 }
 set cmd [lindex $argv 0]
 spawn ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null root@$host $cmd
+set sent 0
 expect {
-    -re {[Pp]assword:} { send "$pass\r"; exp_continue }
-    -re {Permission denied} { puts "AUTH_FAILED"; exit 2 }
-    -re {No route to host|Connection refused|Connection timed out|Connection reset} { puts "NETWORK_FAIL"; exit 3 }
+    -re {[Pp]assword:} {
+        if {!$sent} { send -- "$pass\r"; set sent 1 }
+        exp_continue
+    }
     eof
 }
