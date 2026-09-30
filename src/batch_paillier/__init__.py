@@ -1,4 +1,4 @@
-"""paillier-crypto: additive homomorphic encryption with a native GMP backend.
+"""batch-paillier: additive homomorphic encryption with a native GMP backend.
 
 Public API:
     generate_keypair(bits) -> (PublicKey, PrivateKey)

@@ -3,7 +3,7 @@ requires = ["setuptools>=61"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "paillier-crypto"
+name = "batch-paillier"
 version = "1.0.0"
 description = "Additive homomorphic encryption (Paillier) with a native GMP backend."
 readme = "README.md"
@@ -15,4 +15,4 @@ keywords = ["paillier", "homomorphic", "encryption", "cryptography", "privacy"]
 where = ["src"]
 
 [tool.setuptools.package-data]
-paillier_crypto = ["libpaillier.dylib", "libpaillier.so"]
+batch_paillier = ["libpaillier.dylib", "libpaillier.so"]

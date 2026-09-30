@@ -1,5 +1,5 @@
 #!/bin/bash
-# (Re)start the paillier-crypto usage counter.
+# (Re)start the batch-paillier usage counter.
 DIR=/root/paillier-usage
 cd "$DIR" || exit 1
 if [ -f counter.pid ]; then

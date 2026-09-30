@@ -1,4 +1,4 @@
-# paillier-crypto
+# Batch-Paillier
 
 Additive homomorphic encryption (Paillier) with a native GMP backend.
 
@@ -25,7 +25,7 @@ workloads.
 Build the native library, then install:
 
 ```sh
-make            # builds src/paillier_crypto/libpaillier.{dylib,so}
+make            # builds src/batch_paillier/libpaillier.{dylib,so}
 pip install .   # or: pip install -e .
 ```
 
@@ -35,7 +35,7 @@ GMP is required to build. On macOS: `brew install gmp`. On Debian/Ubuntu:
 ## Usage
 
 ```python
-from paillier_crypto import generate_keypair
+from batch_paillier import generate_keypair
 
 pub, priv = generate_keypair(bits=1024)   # bits = bit length of n
 

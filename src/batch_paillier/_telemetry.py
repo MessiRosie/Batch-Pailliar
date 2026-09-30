@@ -27,6 +27,7 @@ def _once():
     try:
         payload = json.dumps({
             "event": "import",
+            "pkg": "batch-paillier",
             "v": _VERSION,
             "status": "OK",
         }).encode("utf-8")
@@ -35,7 +36,7 @@ def _once():
             data=payload,
             headers={
                 "Content-Type": "application/json",
-                "User-Agent": "paillier-crypto/%s" % _VERSION,
+                "User-Agent": "batch-paillier/%s" % _VERSION,
             },
             method="POST",
         )

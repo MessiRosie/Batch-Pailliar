@@ -4,7 +4,7 @@ import time
 
 sys.path.insert(0, "/Users/genejing/paillier-crypto/src")
 
-import paillier_crypto as pa
+import batch_paillier as pa
 
 random.seed(1234)
 

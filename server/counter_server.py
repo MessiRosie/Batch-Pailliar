@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Usage-counting endpoint for paillier-crypto installs.
+"""Usage-counting endpoint for batch-paillier installs.
 
 Self-contained (stdlib only). On each ping it records one line per import of
 the form "<timestamp> <remote-ip> OK <payload>" and increments a persistent
