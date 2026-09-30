@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "paillier-crypto"
+version = "1.0.0"
+description = "Additive homomorphic encryption (Paillier) with a native GMP backend."
+readme = "README.md"
+requires-python = ">=3.8"
+license = { text = "MIT" }
+keywords = ["paillier", "homomorphic", "encryption", "cryptography", "privacy"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+paillier_crypto = ["libpaillier.dylib", "libpaillier.so"]

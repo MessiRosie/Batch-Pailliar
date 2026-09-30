@@ -1,0 +1,9 @@
+# build artifacts
+build/
+dist/
+*.egg-info/
+*.dylib
+*.so
+__pycache__/
+*.pyc
+.DS_Store

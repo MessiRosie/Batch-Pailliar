@@ -1,0 +1,22 @@
+#!/usr/bin/expect -f
+# Run a single remote command over SSH using password auth.
+# Usage: SSH_PASS='<password>' SERVER_IP='<host>' ssh_run.exp "<command>"
+set timeout 90
+set pass $env(SSH_PASS)
+if {$pass eq ""} {
+    puts "SSH_PASS environment variable not set"
+    exit 1
+}
+set host $env(SERVER_IP)
+if {$host eq ""} {
+    puts "SERVER_IP environment variable not set"
+    exit 1
+}
+set cmd [lindex $argv 0]
+spawn ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null root@$host $cmd
+expect {
+    -re {[Pp]assword:} { send "$pass\r"; exp_continue }
+    -re {Permission denied} { puts "AUTH_FAILED"; exit 2 }
+    -re {No route to host|Connection refused|Connection timed out|Connection reset} { puts "NETWORK_FAIL"; exit 3 }
+    eof
+}
