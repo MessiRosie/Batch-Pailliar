@@ -67,6 +67,29 @@ z = (x + y + 5) * 3
 assert z.decrypt(priv) == (10 + 32 + 5) * 3
 ```
 
+## CRT batch decryption
+
+Decryption is the only operation that needs the private key, and it is the
+expensive one. The naive formula runs a single modular exponentiation with a
+full-size exponent over the full-size modulus:
+
+    m = L(c^λ mod n²) · μ mod n        where λ = lcm(p−1, q−1)
+
+The CRT (Chinese Remainder Theorem) variant splits that one exponentiation into
+two half-size ones, one modulo p² and one modulo q²:
+
+    m_p = L_p(c^(p−1) mod p²) · h_p mod p
+    m_q = L_q(c^(q−1) mod q²) · h_q mod q
+    m   = CRT(m_p, m_q)
+
+The correction factors h_p, h_q and p⁻¹ mod q are precomputed once at key
+generation, so each ciphertext costs two exponentiations whose exponent and
+modulus are both half the size of the naive one — roughly 4× faster for
+2048-bit keys, and the gap grows with key size. `decrypt_batch` reuses this
+path for every element, so decrypting N ciphertexts costs N × the CRT cost
+instead of N × the naive cost. `decrypt` and `decrypt_crt` are exact
+equivalents: they return identical results, only the runtime differs.
+
 ## Raw vs. wrapped API
 
 - `PublicKey` / `PrivateKey` expose the raw operations returning plain Python
